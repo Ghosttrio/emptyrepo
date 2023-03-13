@@ -18,10 +18,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>영화탭</title>
     <link  href="${path}/resources/css/movieTab.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 	<script>
-	window.onload = () => {
-		
+		window.onload = () => {
 		    document.querySelector("#tab1").classList.add("violet");
 		    document.querySelector("#tab2").classList.add("violet2");
 		    document.querySelector(".a2").style.display = "none";
@@ -40,53 +39,54 @@
 		            }
 		        })
 		    }
-		    /*${total}*/
-		    for (let k = 1; k <= ${total}; k++) {
-		    	document.querySelector("#like_btn"+k).addEventListener("click", () => {
+		    
+		    
+		    for (let k = 1; k < ${total}; k++) {
+		    	document.querySelector("#like_btn"+k).addEventListener("click", function(){
 		       	 $.ajax({
-		    		    url: "../movie",
+		    		    url: "../like/",
 		    		    type: "POST",
 		    		    dataType: "html",
 		    		   	data:{
 		    	            command : $('#command').val(),
 		    	            articleNO1 : $('#articleNO1'+k).val()
 		    	        },
-		    		    success:function(data){      					
-		    		    	let a = JSON.parse(data).like;
+		    		    success:function(data){  
+		    		    	alert("성공");
+		    		    	let a = data;
 		    		    	console.log(a);
-		    		  
+		    		    	 /* 화면에 표시하는 방법  */
 		    		    	$("#like_btn"+k).val("좋아요 "+a);
 		    		    },   
 		    		    error: 
 		    		    function (request, status, error){  
 		    		    }
-	    		  });
+		    		  });
 		       })
 		    }
 		    
 		    /* document.querySelector("#search_btn").addEventListener("click", function(){
-	    	 $.ajax({
-	 		    url: "../movie",
-	 		    type: "POST",
-	 		    dataType: "html",
-	 		   	data:{
-	 		   		search_text : $('#search_text').val(),
-	 	        },
-	 		    success:function(data){      					
-	 		    	let a = JSON.parse(data).search;
-	 		    	console.log(a);
-	 		    	alert("검색시작");
-	 		    	$("#search_text").html(a);
-	 		    },   
-	 		    error: 
-	 		    function (request, status, error){  
-	 		      alert("ajax실패")                  
-	 		    }
-	 		  });
-	    	
-	    }) */
-	    
-	    
+		    	 $.ajax({
+		 		    url: "../movie",
+		 		    type: "POST",
+		 		    dataType: "html",
+		 		   	data:{
+		 		   		search_text : $('#search_text').val(),
+		 	        },
+		 		    success:function(data){      					
+		 		    	let a = JSON.parse(data).search;
+		 		    	console.log(a);
+		 		    	alert("검색시작");
+		 		    	$("#search_text").html(a);
+		 		    },   
+		 		    error: 
+		 		    function (request, status, error){  
+		 		      alert("ajax실패")                  
+		 		    }
+		 		  });
+		    	
+		    }) */
+		    
 			document.querySelector(".more").addEventListener("mouseover",function(){
 			    document.querySelector(".more").classList.add("more1");
 			});
@@ -104,18 +104,17 @@
 			        }
 			    });
 			});
-		
-	    
-		
+			
+			
+			
 		}
-	
 	</script>
 </head>
 <body>
 	<div id="wrap">
 		
-		<jsp:include page="Header.jsp"></jsp:include>
-		</div>
+		<jsp:include page="../common/Header.jsp"></jsp:include>
+	</div>
 		
 		
 		<h1>전체영화</h1>

@@ -175,6 +175,13 @@
 			width:200px;
 			height:50px;
 		}
+		
+		#detail{
+			margin-top:50px;
+			width:100px;
+			height:50px;
+		}
+		
 </style>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script type="text/javascript">
@@ -182,15 +189,16 @@ window.onload =()=>{
 	for (let k = 1; k < 5; k++) {
     	document.querySelector("#like_btn"+k).addEventListener("click", function(){
        	 $.ajax({
-    		    url: "../movie1",
+    		    url: "like/",
     		    type: "POST",
     		    dataType: "html",
     		   	data:{
     	            command : $('#command').val(),
     	            articleNO1 : $('#articleNO1'+k).val()
     	        },
-    		    success:function(data){      					
-    		    	let a = JSON.parse(data).like;
+    		    success:function(data){  
+    		    	alert("성공");
+    		    	let a = data;
     		    	console.log(a);
     		    	 /* 화면에 표시하는 방법  */
     		    	$("#like_btn"+k).val("좋아요 "+a);
@@ -208,7 +216,7 @@ window.onload =()=>{
 <body>
 	<div id="wrap_all">
 <!--상단바  -->
-		   <jsp:include page="Header.jsp"></jsp:include>
+		<jsp:include page="../common/Header.jsp"></jsp:include>
 
 			
 			<div class="ddd">
@@ -223,7 +231,7 @@ window.onload =()=>{
 					    <div class="image">
 					    <img class="poster" src="${movie.poster_main }">
 					        <div class="explain">
-					        	<form id="article_form" action="movieInfo.do" method="post">
+					        	<form id="article_form" action="movie/movieInfo.do" method="get">
 						          	<input type="hidden" name="articleNO" value="${movie.articleNO }">
 						       		<input id="detail" type="submit" value="상세보기">
 					    		</form>

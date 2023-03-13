@@ -12,7 +12,6 @@ import com.myspring.dto.MovieDTO;
 import com.myspring.service.MovieService;
 
 @Controller("mainController")
-@RequestMapping("/main")
 public class MainController {
 	
 	@Autowired
@@ -26,12 +25,8 @@ public class MainController {
 	public String movieList(Model model) {
 		System.out.println("메인 실행");
 		List movieList = movieService.movieList();
-//		List list2 = movieService.movieList2();
 		model.addAttribute("movieList", movieList);
-//		model.addAttribute("movieList2", list2);
 		return "main/main";
 	}
-	
-	
 	
 }

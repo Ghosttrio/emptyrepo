@@ -35,7 +35,15 @@ public class MovieService {
 		movieDAO.movieAdd(movieDTO);
 	}
 	
+//	좋아요 업데이트
+	public void updateLike(int articleNO) {
+		movieDAO.update_Like(articleNO);
+	}
 	
-	
+//	좋아요 출력
+	public int selectLike(int articleNO) {
+		int like = movieDAO.select_Like(articleNO);
+		return like;
+	}
 	
 }

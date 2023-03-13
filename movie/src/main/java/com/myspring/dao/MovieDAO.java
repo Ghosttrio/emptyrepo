@@ -1,5 +1,7 @@
 package com.myspring.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,17 @@ public class MovieDAO {
 //	영화 추가
 	public void movieAdd(MovieDTO movieDTO) {
 		List list = sqlSession.selectList("mapper.member.movieAdd", movieDTO);
+	}
+	
+//	좋아요 업데이트
+	public void update_Like(int articleNO){
+		sqlSession.insert("mapper.member.updateLike", articleNO);
+	}
+	
+//	좋아요 출력
+	public int select_Like(int articleNO) {
+		int like = sqlSession.selectOne("mapper.member.selectLike", articleNO);
+		return like;
 	}
 	
 }

@@ -73,7 +73,7 @@
     <header>
  <%-- !!!!!!!!!!!!!!파일 이동 시 변경해야 하는 주소!!!!!!!!!!!!!!!--%>
         <div class="header_list">
-            <div id="h1"><a href="/HumanCinema/movie1/movieTab.do">
+            <div id="h1"><a href="/myapp/movie/movieTab.do">
             	<span style="cursor: pointer">영화</span></a></div>
             
             <div id="h2"><a href="">

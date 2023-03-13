@@ -117,7 +117,7 @@ public class ManagerController {
 	@RequestMapping(value="/update.do", method=RequestMethod.POST) 
 	public String movieUpdate(Model model,
 			@RequestParam(value="articleNO", required=false) String articleNO) { 
-		System.out.println("추가페이지 출력"); 
+		System.out.println("수정페이지 출력"); 
 		List movieList = movieService.viewArticle(Integer.parseInt(articleNO));
 		model.addAttribute("movieList", movieList);
 		return "movieManager/update"; 

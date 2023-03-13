@@ -37,8 +37,7 @@ public class MovieController {
 	@RequestMapping(value="/movieInfo.do", method=RequestMethod.GET)
 	public String movieInfo(Model model,
 			// movieTab에서 articleNO 전달 후 articleNO에 맞는 테이블 포워딩
-			@RequestParam("articleNO") String articleNO
-			) {
+			@RequestParam("articleNO") String articleNO) {
 		List list = movieService.viewArticle(Integer.parseInt(articleNO));
 		model.addAttribute("movieList", list);
 		return "movie/movieInfo";

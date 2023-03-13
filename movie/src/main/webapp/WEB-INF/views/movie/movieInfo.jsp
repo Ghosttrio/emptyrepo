@@ -425,7 +425,7 @@ display:inline-block;
 <body>
     <div id="wrap">
     
-        <jsp:include page="Header.jsp"></jsp:include>
+        <jsp:include page="../common/Header.jsp"></jsp:include>
 	    
         <!-- 영화이미지 div -->
         <c:forEach var="movie" items="${movieList }" varStatus="status">
