@@ -1,6 +1,5 @@
 package com.myspring.dao;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +7,35 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.dto.MovieDTO;
+
+
+
 @Repository("movieDAO")
 public class MovieDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
 	
-//	ì˜í™”ì •ë³´ì¡°íšŒ
+	@Autowired
+	private MovieDTO movieDTO;
+	
+//	¿µÈ­ Ãâ·Â
 	public List movieList() {
 		List movieList = new ArrayList();
 		movieList = sqlSession.selectList("mapper.member.movieList");
 		return movieList;
+	}
+	
+//	¿µÈ­ ¹øÈ£¿¡ ¸Â´Â ¿µÈ­ Ãâ·Â
+	public List viewArticle(int articleNO) {
+		List list = sqlSession.selectList("mapper.member.movieInfo", articleNO);
+		return list;
+	}
+	
+//	¿µÈ­ Ãß°¡
+	public void movieAdd(MovieDTO movieDTO) {
+		List list = sqlSession.selectList("mapper.member.movieAdd", movieDTO);
 	}
 	
 }

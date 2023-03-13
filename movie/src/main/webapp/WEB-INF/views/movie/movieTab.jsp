@@ -3,6 +3,7 @@
     isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <% request.setCharacterEncoding("utf-8"); %>
 <c:set var = "total" value = "0" />
 <c:forEach var="result" items="${movieList}" varStatus="status">     
@@ -16,225 +17,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>영화탭</title>
-	<style>
-		#header {
-		    height: 150px;
-		    border:1px solid red
-		}
-		.tab{
-		    font-size: 0;    
-		}
-		.tab > div {
-		    display: inline-block;
-		    width: 49.9%;
-		    height: 50px;
-		    font-size: 18px;
-		    margin-top: 20px;
-		    text-align: center;
-		    padding-top: 25px;
-		}
-		.violet{
-		    border: 1px solid #503396;
-		    border-bottom: none;
-		}
-		.violet2{
-		    border-bottom: 1px solid #503396;
-		}
-		
-		.a1, .a2 {
-			display:flex;
-			flex-wrap: wrap;
-			margin-top : 30px;
-		}
-		
-		.show1, .show2 {
-			width: 240px;
-		    height: 550px;
-		    margin-left : 35px;
-		    margin-right : 35px;
-		    
-		}
-		
-		/* 영화 호버시 보이는 설명 글 */
-		.explain{
-		    position: absolute;
-		    color: white;
-		    font-size: 15px;
-		    padding: 30px;
-		    opacity: 0;
-		    transition: opacity 0.2s linear;
-		    z-index: 1;
-		    width: 180px;
-			height: 230px;
-			word-wrap: break-word;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			text-align : center;
-		}
-		
-		.image{
-			width: 240px;
-		    height: 330px;
-		}
-		
-		.image:hover .explain{
-		    opacity: 1;
-		}
-		
-		.poster{
-		    transition: 0.2s;
-		    width: 240px;
-		    height: 330px;
-		}
-		.image:hover .poster {
-		    filter: brightness(50%); 
-		}
-		
-		.info{
-		    font-size: 20px;
-		}
-		
-		.info div {
-		    margin-top: 5px;
-		    margin-bottom: 5px;
-		}
-		
-		
-		/* 좋아요와 예매버튼 */
-		.btn1 {
-			width:230px;
-			text-align:center;
-		}
-		
-		.btn1 input{
-			
-		    width: 48%;
-		    height: 40px;
-		    vertical-align:top;
-		    
-		}
-		
-		
-		
-		
-		
-		
-		
-		/* 상단바 */
-	
-        header{
-            color: white;
-            margin-top: 30px;
-        }
-        .header_list {
-            background-color: black;
-            
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            height: 100px;
-        }
-        .header_list >div{
-            width: 100px;
-            line-height: 100px;
-            font-weight: 600;
-            font-size: 20px;
-        }
-        .header_list a {
-        	text-decoration:none;
-        	color: white;
-        }
-        #logo_human{
-            width: 150px;
-            height: 100px;
-        }
-        #logo_human img{
-            width: 150px;
-            height: 100px;
-        }
-        
-        .login_signup {
-        	
-            margin-top: 10px;
-            display: flex;
-            justify-content: flex-end;
-            color: white;
-                       
-        }
-        .login_signup div{
-            margin-left: 20px;
-            font-weight: 600;
-            
-        }
-        .login_signup a{
-            text-decoration:none;
-            color: white;
-            
-        }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-#detail{
-			font-size : 20px;
-		}
-		.title_long{
-			white-space: nowrap; 
-			overflow: hidden;  
-			text-overflow: ellipsis;
-		}
-
-
-
-
-
-		
-		/* 더보기 */
-.article{
-	display:none;
-}
-
-#load {
-    text-decoration: none;
-    color: black;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    padding-left: 46%;
-    padding-right: 46%;
-}
-.more {
-    padding: 10px;
-    margin-top: 70px;
-    width: 100%;
-    text-align: center;
-    font-size: 20px;
-    border: 1px solid black;
-}
-
-.more1 {
-    padding: 10px;
-    margin-top: 70px;
-    width: 100%;
-    text-align: center;
-    font-size: 20px;
-    border: 1px solid black;
-    background-color: gainsboro;
-}
-
-.show1{
-	display:none;
-}
-	</style>
-	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link  href="${path}/resources/css/movieTab.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script>
-		window.onload = () => {
+	window.onload = () => {
+		
 		    document.querySelector("#tab1").classList.add("violet");
 		    document.querySelector("#tab2").classList.add("violet2");
 		    document.querySelector(".a2").style.display = "none";
@@ -253,12 +40,11 @@
 		            }
 		        })
 		    }
-		    
-		    
+		    /*${total}*/
 		    for (let k = 1; k <= ${total}; k++) {
 		    	document.querySelector("#like_btn"+k).addEventListener("click", () => {
 		       	 $.ajax({
-		    		    url: "../movie1",
+		    		    url: "../movie",
 		    		    type: "POST",
 		    		    dataType: "html",
 		    		   	data:{
@@ -274,32 +60,33 @@
 		    		    error: 
 		    		    function (request, status, error){  
 		    		    }
-		    		  });
+	    		  });
 		       })
 		    }
 		    
 		    /* document.querySelector("#search_btn").addEventListener("click", function(){
-		    	 $.ajax({
-		 		    url: "../movie",
-		 		    type: "POST",
-		 		    dataType: "html",
-		 		   	data:{
-		 		   		search_text : $('#search_text').val(),
-		 	        },
-		 		    success:function(data){      					
-		 		    	let a = JSON.parse(data).search;
-		 		    	console.log(a);
-		 		    	alert("검색시작");
-		 		    	$("#search_text").html(a);
-		 		    },   
-		 		    error: 
-		 		    function (request, status, error){  
-		 		      alert("ajax실패")                  
-		 		    }
-		 		  });
-		    	
-		    }) */
-		    
+	    	 $.ajax({
+	 		    url: "../movie",
+	 		    type: "POST",
+	 		    dataType: "html",
+	 		   	data:{
+	 		   		search_text : $('#search_text').val(),
+	 	        },
+	 		    success:function(data){      					
+	 		    	let a = JSON.parse(data).search;
+	 		    	console.log(a);
+	 		    	alert("검색시작");
+	 		    	$("#search_text").html(a);
+	 		    },   
+	 		    error: 
+	 		    function (request, status, error){  
+	 		      alert("ajax실패")                  
+	 		    }
+	 		  });
+	    	
+	    }) */
+	    
+	    
 			document.querySelector(".more").addEventListener("mouseover",function(){
 			    document.querySelector(".more").classList.add("more1");
 			});
@@ -317,17 +104,18 @@
 			        }
 			    });
 			});
-			
-			
-			
+		
+	    
+		
 		}
+	
 	</script>
 </head>
 <body>
-<%-- 	<div id="wrap">
+	<div id="wrap">
 		
-		<jsp:include page="/hyojung/Header.jsp"></jsp:include>
-		</div> --%>
+		<jsp:include page="Header.jsp"></jsp:include>
+		</div>
 		
 		
 		<h1>전체영화</h1>
@@ -351,7 +139,7 @@
 				<div class="show1">
 				    <div class="image">
 				        <div class="explain">
-				        	<form id="article_form" action="movieInfo.do" method="post">
+				        	<form id="article_form" action="movieInfo.do" method="get">
 					          	<input type="hidden" name="articleNO" value="${movie.articleNO }">
 					       		<input id="detail" type="submit" value="상세보기">
 				    		</form>

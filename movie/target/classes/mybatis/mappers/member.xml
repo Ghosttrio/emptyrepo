@@ -9,4 +9,20 @@
          select * from practice
 	</select>
 
+
+	 <select id="movieInfo" resultType="movieDTO" parameterType="int">
+         <![CDATA[
+         	select * from practice where articleNO=#{articleNO}
+         ]]>
+         
+	</select>
+	
+	<select id="movieAdd" parameterType="String">
+         <![CDATA[
+         	insert into practice 
+        	 (articleNO, title, title_en, age, opendate, explain, director, genre, runningtime, actor, poster_back, poster_main)
+        	 values(100, #{title}, #{title_en},#{age}, #{opendate}, #{explain}, #{director}, #{genre}, #{runningtime}, #{actor}, #{poster_back}, #{poster_main})
+         ]]>
+	</select>
+
 </mapper>
